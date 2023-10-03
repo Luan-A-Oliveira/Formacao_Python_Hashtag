@@ -14,10 +14,16 @@ Qual foi o valor de vendas do melhor mês do Ano?
 E valor do pior mês do ano?
 """
 
-meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
+meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun',
+         'jul', 'ago', 'set', 'out', 'nov', 'dez']
 vendas_1sem = [25000, 29000, 22200, 17750, 15870, 19900]
 vendas_2sem = [19850, 20120, 17540, 15555, 49051, 9650]
 
+vendas_1sem.extend(vendas_2sem)
+maior_valor = max(vendas_1sem)
+menor_valor = min(vendas_1sem)
+print(maior_valor)
+print(menor_valor)
 """## 2. Continuação
 
 Agora relacione as duas listas para printar 'O melhor mês do ano foi {} com {} vendas' e o mesmo para o pior mês do ano.
@@ -26,8 +32,19 @@ Calcule também o faturamento total do Ano e quanto que o melhor mês represento
 
 Obs: Para o faturamento total, pode usar a função sum(lista) que soma todos os itens de uma lista
 """
+indice_maior = vendas_1sem.index(maior_valor)
+indice_menor = vendas_1sem.index(menor_valor)
 
+print('O melhor mes do ano foi {} com {} vendas'.format(
+    meses[indice_maior], maior_valor))
+print('O pior mes do ano foi {} com {} vendas'.format(
+    meses[indice_menor], menor_valor))
 
+fat_total = sum(vendas_1sem)
+print('Faturamento total é R${:,}'.format(fat_total))
+percentual = maior_valor / fat_total
+print(
+    'O melhor mês representou {:.1%} das vendas do ano todo'.format(percentual))
 
 """## 3. Crie uma lista com o top 3 valores de vendas do ano (sem fazer "no olho")
 
@@ -35,3 +52,13 @@ Dica: o método remove retira um item da lista.
 """
 
 top3 = []
+maior_valor = max(vendas_1sem)
+top3.append(maior_valor)
+vendas_1sem.remove(maior_valor)
+maior_valor = max(vendas_1sem)
+top3.append(maior_valor)
+vendas_1sem.remove(maior_valor)
+maior_valor = max(vendas_1sem)
+top3.append(maior_valor)
+vendas_1sem.remove(maior_valor)
+print(top3)
