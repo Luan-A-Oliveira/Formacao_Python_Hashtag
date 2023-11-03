@@ -10,11 +10,11 @@
 import requests
 import json
 
-link = "seu_link_aqui"
+link = "link do BD firebase"
 
 # Criar uma venda (POST)
 dados = {'cliente': 'alon', 'preco': 150, 'produto': 'teclado'}
-requisicao = requests.post(f'{link}/Vendas/.json', data=json.dumps(dados))
+requisicao = requests.post(f'{link}/vendas/.json', data=json.dumps(dados))
 print(requisicao)
 print(requisicao.text)
 
@@ -25,23 +25,24 @@ print(requisicao)
 print(requisicao.text)
 
 # Editar a venda (PATCH)
-dados = {'cliente': 'lira'}
-requisicao = requests.patch(f'{link}/Vendas/-MyJSm_N0S8KhCc3nAku/.json', data=json.dumps(dados))
+dados = {'cliente': 'regina'}
+requisicao = requests.patch(
+    f'{link}/vendas/-NiKP4da4SiWiV2j--s9/.json', data=json.dumps(dados))
 print(requisicao)
 print(requisicao.text)
 
 # Pegar uma venda específico ou todas as vendas (GET)
-requisicao = requests.get(f'{link}/Vendas/.json')
+requisicao = requests.get(f'{link}/vendas/.json')
 print(requisicao)
 dic_requisicao = requisicao.json()
-id_alon = None
+id_regina = None
 for id_venda in dic_requisicao:
     cliente = dic_requisicao[id_venda]['cliente']
-    if cliente == "alon":
+    if cliente == "regina":
         print(id_venda)
-        id_alon = id_venda
+        id_regina = id_venda
 
 # Deletar uma venda (DELETE)
-requisicao = requests.delete(f'{link}/Vendas/{id_alon}/.json')
+requisicao = requests.delete(f'{link}/vendas/{id_regina}/.json')
 print(requisicao)
 print(requisicao.text)
